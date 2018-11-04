@@ -8,3 +8,4 @@ name = "binary"
 path = "src/binary.rs"
 
 [dependencies]
+elapsed = "0.1"

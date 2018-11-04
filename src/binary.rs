@@ -1,8 +1,36 @@
+// extern crate elapsed;
+
+// use elapsed::measure_time;
 use std::cmp::Ordering;
+use std::env;
+use std::fs::File;
+use std::io::{BufRead, BufReader};
 
 fn main() {
-  let arr = [0, 12, 56, 45];
-  println!("{:?}", binary_search(&arr, &56));
+  let args: Vec<String> = env::args().collect();
+  let file_name = &args[1];
+  let key = &args[2];
+
+  let file = File::open(file_name).unwrap();
+  println!("read file: {}", file_name);
+  let fin = BufReader::new(file).lines();
+
+  let mut nums: Vec<i32> = [].to_vec();
+
+  for line in fin {
+    nums.push(line.unwrap().parse::<i32>().unwrap());
+    println!("finish read lines: {}", nums.len());
+  }
+
+  println!("read all numbers, total: {}", nums.len());
+
+  let (position, key) = binary_search(&nums, &key.parse::<i32>().unwrap());
+
+  if key == -1 {
+    println!("not found");
+  } else {
+    println!("found position: {}, key: {}", position, key);
+  }
 }
 
 fn binary_search(num_list: &[i32], num: &i32) -> (usize, i32) {
@@ -10,21 +38,19 @@ fn binary_search(num_list: &[i32], num: &i32) -> (usize, i32) {
   let mut hi = num_list.len() - 1;
   let mut mid = (lo + hi) / 2;
 
-  while(lo <= hi) {
+  while (lo <= hi) {
     mid = (lo + hi) / 2;
 
     match num_list[mid].cmp(num) {
       Ordering::Greater => {
         hi = mid;
-      },
+      }
       Ordering::Equal => {
         return (mid, num_list[mid]);
-      },
-      Ordering::Less => {
-        lo = mid
       }
+      Ordering::Less => lo = mid,
     }
   }
 
-  return (0, -1)
+  return (0, -1);
 }
