@@ -3,24 +3,15 @@
 // use elapsed::measure_time;
 use std::cmp::Ordering;
 use std::env;
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+
+mod file_reader;
 
 fn main() {
   let args: Vec<String> = env::args().collect();
   let file_name = &args[1];
   let key = &args[2];
 
-  let file = File::open(file_name).unwrap();
-  println!("read file: {}", file_name);
-  let fin = BufReader::new(file).lines();
-
-  let mut nums: Vec<i32> = [].to_vec();
-
-  for line in fin {
-    nums.push(line.unwrap().parse::<i32>().unwrap());
-    println!("finish read lines: {}", nums.len());
-  }
+  let nums = file_reader::file_read_by_line(&file_name);
 
   println!("read all numbers, total: {}", nums.len());
 
