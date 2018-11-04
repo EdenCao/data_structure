@@ -16,6 +16,8 @@ where
   for data in fin {
     data_queue.push(data.unwrap().parse::<T>().unwrap());
   }
+  
+  println!("read all numbers, total: {}", data_queue.len());
 
   return data_queue;
 }

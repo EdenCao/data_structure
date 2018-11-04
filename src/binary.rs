@@ -13,8 +13,6 @@ fn main() {
 
   let nums = file_reader::file_read_by_line(&file_name);
 
-  println!("read all numbers, total: {}", nums.len());
-
   let (position, key) = binary_search(&nums, &key.parse::<i32>().unwrap());
 
   if key == -1 {
