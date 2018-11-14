@@ -7,5 +7,9 @@ authors = ["caoyong <caoyong@bytedance.com>"]
 name = "binary"
 path = "src/binary.rs"
 
+[[bin]]
+name = "expr"
+path = "src/expr.rs"
+
 [dependencies]
 elapsed = "0.1"
