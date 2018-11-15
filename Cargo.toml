@@ -11,5 +11,10 @@ path = "src/binary.rs"
 name = "expr"
 path = "src/expr.rs"
 
+[workspace]
+members = [
+  'capacity_stack'
+]
+
 [dependencies]
 elapsed = "0.1"

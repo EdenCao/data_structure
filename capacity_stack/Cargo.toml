@@ -1,0 +1,6 @@
+[package]
+name = "capacity_stack"
+version = "0.1.0"
+authors = ["caoyong <caoyong@bytedance.com>"]
+
+[dependencies]
